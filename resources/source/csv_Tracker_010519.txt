@@ -1,0 +1,7 @@
+NO#,Frequency,week,Category,Type,claimcnt,File Name
+1,weekly,1,Match,Paid-Paid,60606,MATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv
+2,weekly,1,Match,Reject-Reject,1298,MATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv
+3,weekly,1,Match,Paid-Paid,4242,MISMATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv
+4,weekly,1,Mismatch,Reject-Paid,54545,MISMATCHED_ESI_REJECTED_CVS_PAID_PP_Wk1_010519_compare_reports.csv
+5,weekly,1,Mismatch,paid-Reject,34346,MISMATCHED_ESI_PAID_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv
+6,weekly,1,Mismatch,Reject-Reject,676,MISMATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv

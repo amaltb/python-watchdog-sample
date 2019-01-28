@@ -1,0 +1,3 @@
+VALID_CSV_HEADER = 'col1,col2,col3,col4'
+HDFS_DESTINATION = '/test/'
+CSV_FILE_DELIMITER = ','
