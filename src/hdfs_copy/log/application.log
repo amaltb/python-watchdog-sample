@@ -1,0 +1,15 @@
+2019-01-28 12:26:14,579 - __main__ - ERROR - Expecting source directory and hdfs destination directory as script arguments. Aborting now...
+2019-01-28 12:27:08,817 - __main__ - INFO - Aborting execution as all the feed files are not present at the source. Try again in next execution...
+2019-01-28 12:30:28,032 - __main__ - INFO - Running system command: hadoop fs -test -d /test/19/05/01
+2019-01-28 12:30:29,791 - __main__ - INFO - Running system command: hadoop fs -mkdir -p /test/19/05/01
+2019-01-28 12:30:31,563 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/19/05/01
+2019-01-28 12:30:34,359 - __main__ - INFO - Running system command: hadoop fs -test -d /test/19/05/01
+2019-01-28 12:30:36,088 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/19/05/01
+2019-01-28 12:30:38,378 - __main__ - INFO - Running system command: hadoop fs -test -d /test/19/05/01
+2019-01-28 12:30:40,127 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/19/05/01
+2019-01-28 12:30:42,405 - __main__ - INFO - Running system command: hadoop fs -test -d /test/19/05/01
+2019-01-28 12:30:44,172 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_REJECTED_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/19/05/01
+2019-01-28 12:30:46,230 - __main__ - INFO - Running system command: hadoop fs -test -d /test/19/05/01
+2019-01-28 12:30:47,977 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_PAID_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/19/05/01
+2019-01-28 12:30:49,870 - __main__ - INFO - Running system command: hadoop fs -test -d /test/19/05/01
+2019-01-28 12:30:51,639 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/19/05/01

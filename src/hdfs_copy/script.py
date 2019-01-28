@@ -60,6 +60,8 @@ def run():
 
 
 def _process_tracker_file(tracker_file):
+    logger.info('Processing started for tracker file: ' + tracker_file)
+    
     feed_files = _get_feed_files(tracker_file)
     if _check_if_present(feed_files):
         destination_path = _build_destination_path(tracker_file)
@@ -74,10 +76,11 @@ def _process_tracker_file(tracker_file):
             files_to_delete.append(tracker_file)
 
         _delete_files(files_to_delete)
-
     else:
         logger.info('Aborting execution as all the feed files are not present at the source. '
                     'Try again in next execution...')
+
+    logger.info('Processing finished for tracker file: ' + tracker_file)
 
 
 def _build_destination_path(tracker_file_name):
