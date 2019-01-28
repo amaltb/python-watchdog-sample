@@ -30,3 +30,54 @@
 2019-01-28 21:11:14,475 - __main__ - INFO - Running system command: hadoop fs -test -d /test/19/01/05
 2019-01-28 21:11:16,164 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/csv_Tracker_010519.txt /test/19/01/05
 2019-01-28 21:11:17,979 - __main__ - INFO - Processing finished for tracker file: csv_Tracker_010519.txt
+2019-01-28 22:16:35,148 - __main__ - ERROR - Expecting source directory and HDFS destination directory as script arguments. Aborting now...
+2019-01-28 22:17:07,387 - __main__ - ERROR - Expecting source directory and valid and invalid HDFS destination directory as script arguments. Aborting now...
+2019-01-28 22:17:17,635 - __main__ - ERROR - Expecting source directory, valid and invalid HDFS destination directory as script arguments. Aborting now...
+2019-01-28 22:21:13,202 - __main__ - INFO - No tracker file to process
+2019-01-28 22:21:20,145 - __main__ - INFO - No tracker files to process
+2019-01-28 22:21:44,948 - __main__ - INFO - Processing started for tracker file: csv_Tracker_010519.csv
+2019-01-28 22:21:44,981 - __main__ - INFO - Running system command: hadoop fs -test -d /19/01/05
+2019-01-28 22:21:46,792 - __main__ - INFO - Running system command: hadoop fs -mkdir -p /19/01/05
+2019-01-28 22:21:48,620 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv /19/01/05
+2019-01-28 22:21:50,530 - __main__ - INFO - Running system command: hadoop fs -test -d /19/01/05
+2019-01-28 22:21:52,282 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /19/01/05
+2019-01-28 22:21:54,164 - __main__ - INFO - Running system command: hadoop fs -test -d /19/01/05
+2019-01-28 22:23:17,635 - __main__ - INFO - Processing started for tracker file: csv_Tracker_010519.csv
+2019-01-28 22:25:38,685 - __main__ - INFO - Processing started for tracker file: csv_Tracker_010519.csv
+2019-01-28 22:26:46,145 - __main__ - INFO - Processing started for tracker file: csv_Tracker_010519.csv
+2019-01-28 22:27:03,134 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:27:05,063 - __main__ - INFO - Running system command: hadoop fs -mkdir -p /test/valid/19/01/05
+2019-01-28 22:27:06,836 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:27:08,709 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:27:10,470 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:27:12,368 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:27:14,134 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:27:16,027 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:27:17,753 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_REJECTED_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:27:19,632 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:27:21,382 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_PAID_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:27:23,259 - __main__ - INFO - Running system command: hadoop fs -test -d /test/invalid/19/01/05
+2019-01-28 22:27:25,005 - __main__ - INFO - Running system command: hadoop fs -mkdir -p /test/invalid/19/01/05
+2019-01-28 22:27:26,770 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/invalid/19/01/05
+2019-01-28 22:27:28,657 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:27:30,453 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/csv_Tracker_010519.csv /test/valid/19/01/05
+2019-01-28 22:27:32,394 - __main__ - INFO - Processing finished for tracker file: ./track/csv_Tracker_010519.csv_tracker.json
+2019-01-28 22:33:49,331 - __main__ - INFO - No tracker files to process
+2019-01-28 22:34:05,962 - __main__ - INFO - Processing started for tracker file: csv_Tracker_010519.csv
+2019-01-28 22:34:05,979 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:34:07,726 - __main__ - INFO - Running system command: hadoop fs -mkdir -p /test/valid/19/01/05
+2019-01-28 22:34:09,452 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:34:11,340 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:34:13,077 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:34:14,942 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:34:16,662 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_PAID_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:34:18,521 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:34:20,230 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_REJECTED_CVS_PAID_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:34:22,084 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:34:23,813 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_PAID_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/valid/19/01/05
+2019-01-28 22:34:25,676 - __main__ - INFO - Running system command: hadoop fs -test -d /test/invalid/19/01/05
+2019-01-28 22:34:27,389 - __main__ - INFO - Running system command: hadoop fs -mkdir -p /test/invalid/19/01/05
+2019-01-28 22:34:29,100 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/MISMATCHED_ESI_REJECTED_CVS_REJECTED_PP_Wk1_010519_compare_reports.csv /test/invalid/19/01/05
+2019-01-28 22:34:30,984 - __main__ - INFO - Running system command: hadoop fs -test -d /test/valid/19/01/05
+2019-01-28 22:34:32,740 - __main__ - INFO - Running system command: hadoop fs -put /Users/ambabu/Documents/PersonalDocuments/code-samples/python-watchdog-sample/resources/source/csv_Tracker_010519.csv /test/valid/19/01/05
+2019-01-28 22:34:34,619 - __main__ - INFO - Processing finished for tracker file: ./track/csv_Tracker_010519.csv_tracker.json

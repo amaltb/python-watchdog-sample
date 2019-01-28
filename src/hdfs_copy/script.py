@@ -1,6 +1,6 @@
 # __author = _amal
 # python = 2.7
-
+import json
 import os
 from subprocess import Popen, PIPE
 
@@ -15,6 +15,10 @@ import logging
 # creating log file directory...
 if not os.path.exists('./log'):
     os.makedirs('./log')
+
+# creating tracker file directory...
+if not os.path.exists('./track'):
+    os.makedirs('./track')
 
 # Create a custom logger
 logger = logging.getLogger(__name__)
@@ -38,7 +42,8 @@ logger.addHandler(f_handler)
 
 _SOURCE_DIR = None
 _HDFS_DESTINATION_ROOT_DIR = None
-_TRACKER_FILE_REGEX = '^(csv_Tracker_)[0-9]+(\.txt)$'
+_INVALID_FILES_HDFS_DIR = None
+_TRACKER_FILE_REGEX = '^(csv_Tracker_)[0-9]+(\.csv)$'
 _CSV_FILE_DELIMITER = ','
 _TRACKER_FILE_HEADER = 'NO#,Frequency,week,Category,Type,claimcnt,File Name'
 
@@ -53,6 +58,10 @@ _FEED_FILE_TYPE_NAME_MAP = {
 def run():
     try:
         tracker_files = _get_tracker_files()
+        if not tracker_files:
+            logger.info('No tracker files to process')
+            exit(0)
+
         for f in tracker_files:
             _process_tracker_file(f)
     except RuntimeError:
@@ -61,21 +70,43 @@ def run():
 
 def _process_tracker_file(tracker_file):
     logger.info('Processing started for tracker file: ' + tracker_file)
+    valid_feed_files, invalid_feed_files = _get_feed_files(tracker_file)
 
-    feed_files = _get_feed_files(tracker_file)
-    if _check_if_present(feed_files):
-        destination_path = _build_destination_path(tracker_file)
+    if _check_if_present(valid_feed_files):
+
+        # building valid and invalid destination paths
+        destination_dt = _build_destination_path_dt(tracker_file)
+        valid_destination_path = join(_HDFS_DESTINATION_ROOT_DIR, destination_dt)
+        invalid_destination_path = join(_INVALID_FILES_HDFS_DIR, destination_dt)
 
         files_to_delete = []
-        for f in feed_files:
-            if _copy_to_hdfs(f, destination_path):
+
+        for f in valid_feed_files:
+            if _copy_to_hdfs(f, valid_destination_path):
                 files_to_delete.append(f)
 
-        # check if all the feed files are successfully copied to hdfs
-        if files_to_delete.__len__() == feed_files.__len__() and _copy_to_hdfs(tracker_file, destination_path):
-            files_to_delete.append(tracker_file)
+        for f in invalid_feed_files:
+            if _copy_to_hdfs(f, invalid_destination_path):
+                files_to_delete.append(f)
 
-        _delete_files(files_to_delete)
+        track_data = {
+            tracker_file: [f for f in files_to_delete if f not in invalid_feed_files and f != tracker_file]
+        }
+
+        # check if all the feed files and tracker file, are successfully copied to hdfs, before calling delete
+        if files_to_delete.__len__() == (len(valid_feed_files) + len(invalid_feed_files)) \
+                and _copy_to_hdfs(tracker_file, valid_destination_path):
+            files_to_delete.append(tracker_file)
+            _delete_files(files_to_delete)
+
+        # writing to the tracker file
+        tracker_file = join('./track', tracker_file + '_tracker.json')
+        try:
+            with open(tracker_file, 'w') as outfile:
+                json.dump(track_data, outfile)
+        except Exception as e:
+            raise RuntimeError('Failed to write the tracker file due to exception...' + str(e))
+
     else:
         logger.info('Aborting execution as all the feed files are not present at the source. '
                     'Try again in next execution...')
@@ -83,14 +114,14 @@ def _process_tracker_file(tracker_file):
     logger.info('Processing finished for tracker file: ' + tracker_file)
 
 
-def _build_destination_path(tracker_file_name):
-    m = re.search('Tracker_(.+?)(\.txt)$', tracker_file_name)
+def _build_destination_path_dt(tracker_file_name):
+    m = re.search('Tracker_(.+?)(\.csv)$', tracker_file_name)
     if m:
         dt = str(m.group(1))
         yr = dt[4:]
         day = dt[2:4]
         mo = dt[:2]
-        return _HDFS_DESTINATION_ROOT_DIR + os.sep + yr + os.sep + mo + os.sep + day
+        return yr + os.sep + mo + os.sep + day
     else:
         raise RuntimeError('Could not build destination path using tracker file. Check tracker file name...')
 
@@ -142,15 +173,21 @@ def _check_if_present(list_of_files):
 
 def _get_feed_files(tracker_file_name):
     df = _validate_tracker_file(tracker_file_name)
-    feed_files = []
+    valid_feed_files = []
+    invalid_feed_files = []
     for index, row in df.iterrows():
         _type, file_name = row[4], row[6]
-        file_name_regex = _FEED_FILE_TYPE_NAME_MAP.get(_type)
-        pattern = re.compile(file_name_regex)
-        if pattern.match(file_name):
-            feed_files.append(file_name)
+        file_name_regex = str(_FEED_FILE_TYPE_NAME_MAP.get(_type))
+        if file_name_regex:
+            pattern = re.compile(file_name_regex)
+            if pattern.match(file_name):
+                valid_feed_files.append(file_name)
+            else:
+                invalid_feed_files.append(file_name)
+        else:
+            invalid_feed_files.append(file_name)
 
-    return feed_files
+    return valid_feed_files, invalid_feed_files
 
 
 def _validate_tracker_file(tracker_file_name):
@@ -176,10 +213,12 @@ def _get_tracker_files():
 
 
 if __name__ == '__main__':
-    if sys.argv.__len__() < 3:
-        logger.error('Expecting source directory and HDFS destination directory as script arguments. Aborting now...')
+    if sys.argv.__len__() < 4:
+        logger.error('Expecting source directory, valid and invalid HDFS destination directory '
+                     'as script arguments. Aborting now...')
         exit(-1)
 
     _SOURCE_DIR = sys.argv[1]
     _HDFS_DESTINATION_ROOT_DIR = sys.argv[2]
+    _INVALID_FILES_HDFS_DIR = sys.argv[3]
     run()
