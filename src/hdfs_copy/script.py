@@ -61,7 +61,7 @@ def run():
 
 def _process_tracker_file(tracker_file):
     logger.info('Processing started for tracker file: ' + tracker_file)
-    
+
     feed_files = _get_feed_files(tracker_file)
     if _check_if_present(feed_files):
         destination_path = _build_destination_path(tracker_file)
@@ -72,7 +72,7 @@ def _process_tracker_file(tracker_file):
                 files_to_delete.append(f)
 
         # check if all the feed files are successfully copied to hdfs
-        if files_to_delete.__len__() == feed_files.__len__():
+        if files_to_delete.__len__() == feed_files.__len__() and _copy_to_hdfs(tracker_file, destination_path):
             files_to_delete.append(tracker_file)
 
         _delete_files(files_to_delete)
@@ -88,8 +88,8 @@ def _build_destination_path(tracker_file_name):
     if m:
         dt = str(m.group(1))
         yr = dt[4:]
-        mo = dt[2:4]
-        day = dt[:2]
+        day = dt[2:4]
+        mo = dt[:2]
         return _HDFS_DESTINATION_ROOT_DIR + os.sep + yr + os.sep + mo + os.sep + day
     else:
         raise RuntimeError('Could not build destination path using tracker file. Check tracker file name...')
@@ -177,7 +177,7 @@ def _get_tracker_files():
 
 if __name__ == '__main__':
     if sys.argv.__len__() < 3:
-        logger.error('Expecting source directory and hdfs destination directory as script arguments. Aborting now...')
+        logger.error('Expecting source directory and HDFS destination directory as script arguments. Aborting now...')
         exit(-1)
 
     _SOURCE_DIR = sys.argv[1]
